@@ -45,16 +45,6 @@ public class MagmaCore extends PluginBase implements Listener {
     //TODO: ECONOMY
     //TODO: BOSSES
     //TODO: MAKE SURE ALL UNECCESARY IMPORTS ARE GONE
-    //ALT + X IS THE MENU SHORTCUT
-
-
-
-
-
-
-    //asdfnhjsdhlkgfujhbwhy TTTTTTTTTEESSSSSSSSSSSSTTTTTTT
-
-
 
     @Override
     public void onEnable() {
@@ -97,7 +87,7 @@ public class MagmaCore extends PluginBase implements Listener {
         pluginManager.registerEvents(new PlayerDeathActions(this), this);
         pluginManager.registerEvents(new PlayerMoveActions(this), this);
         pluginManager.registerEvents(new PlayerInteractionsActions(this), this);
-        pluginManager.registerEvents(new PlayerPlaceAndBreakActions(this), this);
+        pluginManager.registerEvents(new OpCanBreak(this), this);
         pluginManager.registerEvents(new PlayerBanBlockedMessages(this), this);
         pluginManager.registerEvents(new LaunchPadEvent(this), this);
         pluginManager.registerEvents(new PlayerChatEvents(this), this);
