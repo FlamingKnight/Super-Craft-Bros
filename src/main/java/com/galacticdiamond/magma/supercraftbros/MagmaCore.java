@@ -49,6 +49,13 @@ public class MagmaCore extends PluginBase implements Listener {
 
 
 
+
+
+
+    //asdfnhjsdhlkgfujhbwhy TTTTTTTTTEESSSSSSSSSSSSTTTTTTT
+
+
+
     @Override
     public void onEnable() {
         plugin = this;
