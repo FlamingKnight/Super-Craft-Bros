@@ -7,17 +7,19 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerInteractEvent;
 import cn.nukkit.event.player.PlayerInteractEvent.Action;
+import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.form.element.ElementButton;
 import cn.nukkit.form.window.FormWindowSimple;
 import cn.nukkit.item.Item;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
+import com.galacticdiamond.magma.supercraftbros.lists.CustomItems;
 import com.galacticdiamond.magma.supercraftbros.lists.CustomLocations;
 import com.galacticdiamond.magma.supercraftbros.lists.CustomMessages;
 
 public class PlayerInteractionsActions implements Listener {
 
-    //private CustomItems ci = new CustomItems();
+    private CustomItems customItems = new CustomItems();
     private CustomMessages cm = new CustomMessages();
     private CustomLocations loc = new CustomLocations();
 
@@ -26,53 +28,12 @@ public class PlayerInteractionsActions implements Listener {
         this.plugin = plugin;
     }
 
-    /*@EventHandler
-    public void spawnForm(PlayerFormRespondedEvent ev) {
-        Player player = ev.getPlayer();
-        FormWindow window = ev.getWindow();
-
-        if (ev.getResponse() == null) return;
-
-        if (window instanceof FormWindowSimple) {
-            String title = ((FormWindowSimple) ev.getWindow()).getTitle();
-            String button = ((FormResponseSimple) ev.getResponse()).getClickedButton().getText();
-            if (!ev.wasClosed()) {
-                if (title.equals("Hello")) {
-                    if (button.equals("Warp to the shop!")) {
-                        player.teleport(loc.shop);
-                    } else if (button.equals("Test")) {
-                        player.sendMessage(cm.prefix + "Successfully tested, thanks " + player.getName() + "!");
-                    } else if (button.equals("Capture the Flag")) {
-                        player.teleport(loc.ctfLobby);
-                        player.getInventory().setItem(8, ci.teamSelector);
-                    }
-                }
-            }
-        }
-    }*/
-
     @EventHandler
     public void onInteract(PlayerInteractEvent ev) {
         Action action = ev.getAction();
         Player player = ev.getPlayer();
         Block block = ev.getBlock();
         Item itemHeld = ev.getItem();
-
-        FormWindowSimple spawnForm = new FormWindowSimple("Hello", "this is a test!");
-        spawnForm.addButton(new ElementButton("Test"));
-        spawnForm.addButton(new ElementButton("Warp to the shop!"));
-        spawnForm.addButton(new ElementButton("Capture the Flag"));
-
-        /*if(itemHeld.equals(ci.spawnCompass)) {
-            player.showFormWindow(spawnForm);
-        }*/
-
-        //Emerald give Heavenly Axe
-        /*if(action.equals((Action.LEFT_CLICK_BLOCK))) {
-            if(block.getId() == (BlockID.EMERALD_BLOCK)) {
-                ci.giveItems(player);
-            }
-        }*/
 
         //Diamond Block Feeds
         if(action.equals((Action.LEFT_CLICK_BLOCK))) {
