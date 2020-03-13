@@ -33,19 +33,6 @@ public class PlayerInteractionsActions implements Listener {
         Action action = ev.getAction();
         Player player = ev.getPlayer();
         Block block = ev.getBlock();
-        Item itemHeld = ev.getItem();
-
-        //Diamond Block Feeds
-        if(action.equals((Action.LEFT_CLICK_BLOCK))) {
-            if(block.getId() == BlockID.DIAMOND_BLOCK) {
-                if(player.getFoodData().getLevel() < 20) {
-                    player.sendMessage(cm.prefix + "You have been fed!");
-                    player.getFoodData().setLevel(20);
-                } else {
-                    player.sendMessage(cm.prefix + "You're already full!");
-                }
-            }
-        }
 
         //Emerald heals you
         if(action.equals(Action.RIGHT_CLICK_BLOCK)) {
