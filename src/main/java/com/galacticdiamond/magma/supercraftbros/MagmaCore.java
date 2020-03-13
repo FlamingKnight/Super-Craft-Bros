@@ -16,6 +16,9 @@ import com.galacticdiamond.magma.supercraftbros.events.*;
 import com.galacticdiamond.magma.supercraftbros.events.blocksevents.*;
 import com.galacticdiamond.magma.supercraftbros.events.chatting.*;
 import com.galacticdiamond.magma.supercraftbros.events.interactions.*;
+import com.galacticdiamond.magma.supercraftbros.events.interactions.blocks.DiamondBlockFeeder;
+import com.galacticdiamond.magma.supercraftbros.events.interactions.blocks.EmeraldBlockHealing;
+import com.galacticdiamond.magma.supercraftbros.events.interactions.blocks.HeavenlyAxeGiver;
 import com.galacticdiamond.magma.supercraftbros.events.loginandleave.*;
 import com.galacticdiamond.magma.supercraftbros.events.motion.*;
 import com.galacticdiamond.magma.supercraftbros.lists.*;
@@ -92,6 +95,9 @@ public class MagmaCore extends PluginBase implements Listener {
         pluginManager.registerEvents(new LaunchPadEvent(this), this);
         pluginManager.registerEvents(new PlayerChatEvents(this), this);
         pluginManager.registerEvents(new PlayerDamageActions(this), this);
+        pluginManager.registerEvents(new DiamondBlockFeeder(this), this);
+        pluginManager.registerEvents(new EmeraldBlockHealing(this), this);
+        pluginManager.registerEvents(new HeavenlyAxeGiver(this), this);
     }
 
     private void registerCommands() {
