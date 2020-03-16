@@ -38,6 +38,7 @@ public class MagmaCore extends PluginBase implements Listener {
 
 
 
+    //TODO: DOUBLE JUMP
     //TODO: MAKE EVENT HANDLERS IN THEIR OWN PARTS
     //TODO: CUSTOM NAME TAGS
     //TODO: FINISH WARP
@@ -48,7 +49,9 @@ public class MagmaCore extends PluginBase implements Listener {
     //TODO: ECONOMY
     //TODO: BOSSES
     //TODO: MAKE SURE ALL UNECCESARY IMPORTS ARE GONE
-    //TODO: REREGISTER PLAYERINTERACTIONS
+    //TODO: ADD EVENT PRIORITIES
+
+
 
     @Override
     public void onEnable() {

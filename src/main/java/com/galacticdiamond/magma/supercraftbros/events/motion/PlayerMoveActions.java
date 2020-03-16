@@ -3,6 +3,7 @@ package com.galacticdiamond.magma.supercraftbros.events.motion;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerFoodLevelChangeEvent;
 import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
@@ -38,7 +39,7 @@ public class PlayerMoveActions implements Listener {
     @EventHandler
     public void whenUnderPlatform(PlayerMoveEvent ev) {
         Player player = ev.getPlayer();
-        if(player.getY() < 75) {
+        if(player.getY() < 75 && plugin.getCustomHashMaps().isGameOn.get("scb")) {
              int lives = plugin.getCustomHashMaps().playerLives.get(player.getUniqueId());
              if(lives > 0) {
                  plugin.getCustomHashMaps().knockbackAmount.put(player.getUniqueId(), 0.1);

@@ -22,6 +22,9 @@ public class ItemSpawner extends NukkitRunnable {
         int positionZ = randomZ+128;
         int yPosition = 100;
         Location spawnPosition = new Location(positionX, yPosition, positionZ);
+        if(!plugin.getCustomHashMaps().isGameOn.get("scb")) {
+            return;
+        }
         int random = (int) (Math.random() * 1);
             switch (random) {
                 case 0:
@@ -29,6 +32,7 @@ public class ItemSpawner extends NukkitRunnable {
                     break;
                 case 1:
                     plugin.getServer().getLevelByName("world").dropItem(spawnPosition, customItems.fragGrenade);
+                    break;
                 default:
                     plugin.getServer().broadcastMessage(TextFormat.RED + "Something went wrong!");
                     break;

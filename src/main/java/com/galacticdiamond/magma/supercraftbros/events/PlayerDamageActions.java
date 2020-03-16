@@ -7,6 +7,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.entity.EntityDamageByEntityEvent;
 import cn.nukkit.event.entity.EntityDamageEvent;
 import cn.nukkit.item.Item;
+import cn.nukkit.item.ItemID;
 import cn.nukkit.math.Vector3;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
 import com.galacticdiamond.magma.supercraftbros.lists.CustomItems;
@@ -15,7 +16,6 @@ import com.galacticdiamond.magma.supercraftbros.lists.CustomMessages;
 public class PlayerDamageActions implements Listener {
 
     private MagmaCore plugin;
-    private CustomItems customItems = new CustomItems();
     private CustomMessages customMessages = new CustomMessages();
     public PlayerDamageActions(MagmaCore plugin) {
         this.plugin = plugin;
@@ -37,7 +37,8 @@ public class PlayerDamageActions implements Listener {
 
                 if(heldItem.getName().equals(customMessages.mjolnirPrefix)) {
                     heldItem.setDamage(0);
-                    damager.getInventory().remove(customItems.mjolnir);
+                    Item air = Item.get(0);
+                    damager.getInventory().setItemInHand(air);
                     if(plugin.getCustomHashMaps().knockbackAmount.get(hitPlayer.getUniqueId()) < 10.0) {
                         plugin.getCustomHashMaps().knockbackAmount.put(hitPlayer.getUniqueId(), currenntKnockbackAmount*2);
                     } else {
