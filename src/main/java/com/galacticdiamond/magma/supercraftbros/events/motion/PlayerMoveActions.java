@@ -5,6 +5,7 @@ import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerFoodLevelChangeEvent;
 import cn.nukkit.event.player.PlayerMoveEvent;
+import cn.nukkit.event.player.PlayerToggleFlightEvent;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
 import com.galacticdiamond.magma.supercraftbros.lists.CustomLocations;
@@ -18,6 +19,16 @@ public class PlayerMoveActions implements Listener {
 
     public PlayerMoveActions(MagmaCore plugin){
         this.plugin = plugin;
+    }
+
+    //TODO: PUT ALL OF THESE IN SEPERATE CLASSES
+
+    @EventHandler
+    public void resetJumps(PlayerMoveEvent ev) {
+        Player player = ev.getPlayer();
+        if(player.isOnGround()) {
+            plugin.getCustomHashMaps().hasDoubleJumped.put(player.getUniqueId(), false);
+        }
     }
 
     @EventHandler

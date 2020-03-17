@@ -13,6 +13,8 @@ public class CustomHashMaps implements Listener {
     public HashMap<UUID, Integer> moneyAmount = new HashMap<UUID, Integer>();
     public HashMap<UUID, String> rank = new HashMap<UUID, String>();
 
+    public HashMap<UUID, Boolean> hasDoubleJumped = new HashMap<UUID, Boolean>();
+
     public HashMap<UUID, Double> knockbackAmount = new HashMap<UUID, Double>();
     public HashMap<UUID, Integer> playerLives = new HashMap<UUID, Integer>();
 

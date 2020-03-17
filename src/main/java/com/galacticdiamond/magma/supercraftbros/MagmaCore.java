@@ -29,6 +29,7 @@ public class MagmaCore extends PluginBase implements Listener {
     public static MagmaCore plugin;
     private Announcements announce = new Announcements(this);
     private ItemSpawner itemSpawner = new ItemSpawner(this);
+    private SetDay setDay = new SetDay(this);
     public CustomHashMaps customHashMaps;
     public CustomMessages customMessages = new CustomMessages();
     private int sec = 20;
@@ -44,7 +45,7 @@ public class MagmaCore extends PluginBase implements Listener {
     //TODO: FINISH WARP
     //TODO: MORE COMMANDS SUCH AS VANISH
     //TODO: FIIIIIIIXXXXXXXXXX READING AND WRITING JACKSON
-    //TODO: DELETE/REPLACE CURRENT NUKKIT DEFAULT COMMANDS!!!!!!!!!!!!!!!!!!!!!
+    //TODO: DELETE/REPLACE CURRENT NUKKIT DEFAULT COMMANDS
     //TODO: WORK MORE ON AN API
     //TODO: ECONOMY
     //TODO: BOSSES
@@ -65,6 +66,7 @@ public class MagmaCore extends PluginBase implements Listener {
         plugin.getCustomHashMaps().isGameOn.put("scb", false);
         this.getLogger().info(TextFormat.GREEN + "\n\nThe plugin has been enabled successfully!\n\n");
         itemSpawner.runTaskTimer(this, sec, 15*sec);
+        setDay.runTaskTimer(this, sec, sec);
     }
 
     private void loadConfig() {
@@ -90,6 +92,7 @@ public class MagmaCore extends PluginBase implements Listener {
 
     private void registerEvents() {
         PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new DoubleJumpActions(this), this);
         pluginManager.registerEvents(new PlayerJoinActions(this), this);
         pluginManager.registerEvents(new PlayerDeathActions(this), this);
         pluginManager.registerEvents(new PlayerMoveActions(this), this);

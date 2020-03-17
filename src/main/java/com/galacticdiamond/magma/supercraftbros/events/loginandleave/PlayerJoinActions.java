@@ -1,5 +1,6 @@
 package com.galacticdiamond.magma.supercraftbros.events.loginandleave;
 
+import cn.nukkit.AdventureSettings;
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.Listener;
@@ -35,9 +36,13 @@ public class PlayerJoinActions implements Listener {
         plugin.getCustomHashMaps().playerHome.putIfAbsent(player.getUniqueId(), loc.spawn);
         plugin.getCustomHashMaps().knockbackAmount.putIfAbsent(player.getUniqueId(), 0.1);
         plugin.getCustomHashMaps().playerLives.putIfAbsent(player.getUniqueId(), 3);
+        plugin.getCustomHashMaps().hasDoubleJumped.putIfAbsent(player.getUniqueId(), false);
+        plugin.getCustomHashMaps().hasDoubleJumped.put(player.getUniqueId(), false);
         player.setGamemode(0);
 
         player.setCheckMovement(false);
+        player.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
+        player.getAdventureSettings().update();
 
         if(!(player.hasPlayedBefore())) {
             ev.setJoinMessage(cm.prefix + TextFormat.GRAY + "Everyone welcome " + TextFormat.GREEN + player.getName() + TextFormat.GRAY + " to the server for the first time!");
