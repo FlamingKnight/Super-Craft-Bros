@@ -15,7 +15,6 @@ import com.galacticdiamond.magma.supercraftbros.commands.vanilla.*;
 import com.galacticdiamond.magma.supercraftbros.events.*;
 import com.galacticdiamond.magma.supercraftbros.events.blocksevents.*;
 import com.galacticdiamond.magma.supercraftbros.events.chatting.*;
-import com.galacticdiamond.magma.supercraftbros.events.interactions.*;
 import com.galacticdiamond.magma.supercraftbros.events.interactions.blocks.DiamondBlockFeeder;
 import com.galacticdiamond.magma.supercraftbros.events.interactions.blocks.EmeraldBlockHealing;
 import com.galacticdiamond.magma.supercraftbros.events.interactions.blocks.HeavenlyAxeGiver;
