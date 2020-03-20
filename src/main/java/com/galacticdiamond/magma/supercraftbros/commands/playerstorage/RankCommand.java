@@ -8,9 +8,13 @@ import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.event.Listener;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
+import com.galacticdiamond.magma.supercraftbros.ReadAndWriteFunctions;
+
+import java.io.File;
 
 public class RankCommand extends Command implements Listener {
 
+    private ReadAndWriteFunctions readAndWriteFunctions = new ReadAndWriteFunctions();
     private MagmaCore plugin;
     public RankCommand(MagmaCore plugin) {
         super("rankgive", "Use this to give a player a rank!", "/rankgive <Rank Name>");
@@ -47,39 +51,55 @@ public class RankCommand extends Command implements Listener {
                         sender.sendMessage("You didn't enter a valid rank! Please use /rankslist to see the seperate ranks!");
                         return false;
                     } else {
+                        String playerUUIDStringified = String.valueOf(player.getUniqueId());
+                        String rankName;
                         if(args[1].equalsIgnoreCase("mod")) {
+                            rankName = "mod";
                             plugin.getCustomHashMaps().rank.put(toGiveRank.getUniqueId(), "mod");
                             sender.sendMessage("Gave " + toGiveRank.getName() + " the Moderator role!");
                             toGiveRank.sendMessage(TextFormat.GREEN + "Congratulations " + toGiveRank.getName() + "! You recieved the Moderator role!");
-                            return true;
+                            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+                            readAndWriteFunctions.writeFile(file, rankName);
                         } else if(args[1].equalsIgnoreCase("srmod")) {
+                            rankName = "srmod";
                             plugin.getCustomHashMaps().rank.put(toGiveRank.getUniqueId(), "srmod");
                             sender.sendMessage("Gave " + toGiveRank.getName() + " the Senior Moderator role!");
                             toGiveRank.sendMessage(TextFormat.GREEN + "Congratulations " + toGiveRank.getName() + "! You recieved the Senior Moderator role!");
-                            return true;
+                            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+                            readAndWriteFunctions.writeFile(file, rankName);
                         } else if(args[1].equalsIgnoreCase("owner")) {
+                            rankName = "owner";
                             plugin.getCustomHashMaps().rank.put(toGiveRank.getUniqueId(), "owner");
                             sender.sendMessage("Gave " + toGiveRank.getName() + " the Owner role!");
                             toGiveRank.sendMessage(TextFormat.GREEN + "Congratulations " + toGiveRank.getName() + "! You recieved the Owner role!");
-                            return true;
+                            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+                            readAndWriteFunctions.writeFile(file, rankName);
                         } else if(args[1].equalsIgnoreCase("diamondstar")) {
+                            rankName = "diamond star";
                             plugin.getCustomHashMaps().rank.put(toGiveRank.getUniqueId(), "diamondstar");
                             sender.sendMessage("Gave " + toGiveRank.getName() + " the Diamond Star role!");
                             toGiveRank.sendMessage("Congratulations " + toGiveRank.getName() + "! You recieved the Diamond Star role!");
-                            return true;
+                            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+                            readAndWriteFunctions.writeFile(file, rankName);
                         } else if(args[1].equalsIgnoreCase("diamond")) {
+                            rankName = "diamond";
                             plugin.getCustomHashMaps().rank.put(toGiveRank.getUniqueId(), "diamond");
                             sender.sendMessage("Gave " + toGiveRank.getName() + " the Diamond role!");
                             toGiveRank.sendMessage("Congratulations " + toGiveRank.getName() + "! You recieved the Diamond role!");
-                            return true;
+                            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+                            readAndWriteFunctions.writeFile(file, rankName);
                         } else if(args[1].equalsIgnoreCase("asteroid")) {
+                            rankName = "asteroid";
                             plugin.getCustomHashMaps().rank.put(toGiveRank.getUniqueId(), "asteroid");
                             sender.sendMessage("Gave " + toGiveRank.getName() + " the Asteroid role!");
                             toGiveRank.sendMessage("Congratulations " + toGiveRank.getName() + "! You recieved the Asteroid role!");
-                            return true;
+                            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+                            readAndWriteFunctions.writeFile(file, rankName);
                         } else {
                             sender.sendMessage(TextFormat.RED + "You didn't enter a correct rank name!");
+                            return false;
                         }
+                        return true;
                     }
                 }
             } else  {

@@ -10,14 +10,20 @@ import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.network.protocol.SetLocalPlayerAsInitializedPacket;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
+import com.galacticdiamond.magma.supercraftbros.ReadAndWriteFunctions;
 import com.galacticdiamond.magma.supercraftbros.lists.CustomLocations;
 import com.galacticdiamond.magma.supercraftbros.lists.CustomMessages;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 
 
 public class PlayerJoinActions implements Listener {
 
     private CustomMessages cm = new CustomMessages();
     private CustomLocations loc = new CustomLocations();
+    private ReadAndWriteFunctions readAndWriteFunctions = new ReadAndWriteFunctions();
 
     private MagmaCore plugin;
     public PlayerJoinActions(MagmaCore plugin){
@@ -43,6 +49,21 @@ public class PlayerJoinActions implements Listener {
         player.setCheckMovement(false);
         player.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
         player.getAdventureSettings().update();
+
+        try {
+            String playerUUIDStringified = String.valueOf(player.getUniqueId());
+            String rank = readAndWriteFunctions.readFile("scbdata/" + playerUUIDStringified + ".txt");
+            String[] rankList = new String[]{"owner", "mod", "srmod", "asteroid", "diamond", "diamondstar"};
+            for(String rankName : rankList) {
+                if(rank.contains(rankName)) {
+                    plugin.getCustomHashMaps().rank.put(player.getUniqueId(), rankName);
+                }
+            }
+        } catch (Exception e) {
+            String playerUUIDStringified = String.valueOf(player.getUniqueId());
+            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
+            readAndWriteFunctions.writeFile(file, "Rank: member");
+        }
 
         if(!(player.hasPlayedBefore())) {
             ev.setJoinMessage(cm.prefix + TextFormat.GRAY + "Everyone welcome " + TextFormat.GREEN + player.getName() + TextFormat.GRAY + " to the server for the first time!");

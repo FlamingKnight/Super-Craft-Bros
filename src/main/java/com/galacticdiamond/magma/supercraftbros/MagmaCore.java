@@ -23,6 +23,8 @@ import com.galacticdiamond.magma.supercraftbros.events.motion.*;
 import com.galacticdiamond.magma.supercraftbros.lists.*;
 import com.galacticdiamond.magma.supercraftbros.tasks.*;
 
+import java.io.File;
+
 public class MagmaCore extends PluginBase implements Listener {
 
     public static MagmaCore plugin;
@@ -64,7 +66,7 @@ public class MagmaCore extends PluginBase implements Listener {
         announce.counter = 0;
         plugin.getCustomHashMaps().isGameOn.put("scb", false);
         this.getLogger().info(TextFormat.GREEN + "\n\nThe plugin has been enabled successfully!\n\n");
-        itemSpawner.runTaskTimer(this, sec, 15*sec);
+        itemSpawner.runTaskTimer(this, sec, 15 * sec);
         setDay.runTaskTimer(this, sec, sec);
     }
 

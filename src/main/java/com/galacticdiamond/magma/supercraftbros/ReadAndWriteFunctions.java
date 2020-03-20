@@ -7,15 +7,12 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 
 public class ReadAndWriteFunctions {
 
-    public void writeFile(String fileName, String toWrite) {
+    public void writeFile(File fileName, String toWrite) {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
             fileWriter.write(" ");
@@ -28,7 +25,7 @@ public class ReadAndWriteFunctions {
         }
     }
 
-    public void readFile(String fileName) {
+    public String readFile(String fileName) {
         try {
             FileReader fileReader = new FileReader(fileName);
             StringBuilder builder = new StringBuilder();
@@ -37,8 +34,10 @@ public class ReadAndWriteFunctions {
             }
             String message = builder.toString();
             fileReader.close();
+            return message;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
