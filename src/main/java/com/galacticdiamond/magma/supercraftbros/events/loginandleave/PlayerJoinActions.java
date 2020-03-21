@@ -57,11 +57,11 @@ public class PlayerJoinActions implements Listener {
         String playerUUIDStringified = String.valueOf(player.getUniqueId());
 
         //Creates a new directory for the player
-        Path path = Paths.get("worlds\\" + playerUUIDStringified);
+        Path path = Paths.get("worlds/" + playerUUIDStringified);
         Files.createDirectories(path);
 
-        File sourceWorld = new File("worlds\\SkyblockIsland");
-        File targetWorld = new File("worlds\\" + playerUUIDStringified + "-IslandWorld");
+        File sourceWorld = new File("worlds/SkyblockIsland");
+        File targetWorld = new File("worlds/" + playerUUIDStringified + "-IslandWorld");
 
         if(!targetWorld.exists()) {
             readAndWriteFunctions.copyFolders(sourceWorld, targetWorld);
@@ -71,7 +71,7 @@ public class PlayerJoinActions implements Listener {
 
         //Ranks
         try {
-            String rank = readAndWriteFunctions.readFile("scbdata\\" + playerUUIDStringified + "\\ranks.txt");
+            String rank = readAndWriteFunctions.readFile("scbdata/" + playerUUIDStringified + "/ranks.txt");
             String[] rankList = new String[]{"owner", "mod", "srmod", "asteroid", "diamond", "diamondstar"};
             for(String rankName : rankList) {
                 if(rank.contains(rankName)) {
@@ -79,7 +79,7 @@ public class PlayerJoinActions implements Listener {
                 }
             }
         } catch (Exception e) {
-            File rankFile = new File("scbdata\\" + playerUUIDStringified + "\\ranks.txt");
+            File rankFile = new File("scbdata/" + playerUUIDStringified + "/ranks.txt");
             readAndWriteFunctions.writeFile(rankFile, "Rank: member");
         }
 
