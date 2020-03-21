@@ -7,10 +7,8 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class CustomHashMaps implements Listener {
-    public HashMap<UUID, Vector3f> playerHome = new HashMap<UUID, Vector3f>();
     public HashMap<UUID, Integer> xpAmount = new HashMap<UUID, Integer>();
     public HashMap<UUID, Boolean> muted = new HashMap<UUID, Boolean>();
-    public HashMap<UUID, Integer> moneyAmount = new HashMap<UUID, Integer>();
     public HashMap<UUID, String> rank = new HashMap<UUID, String>();
 
     public HashMap<UUID, Boolean> hasDoubleJumped = new HashMap<UUID, Boolean>();

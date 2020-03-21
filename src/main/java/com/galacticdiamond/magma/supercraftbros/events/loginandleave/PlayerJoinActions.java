@@ -41,7 +41,6 @@ public class PlayerJoinActions implements Listener {
 
         plugin.getCustomHashMaps().xpAmount.putIfAbsent(player.getUniqueId(), 0);
         plugin.getCustomHashMaps().muted.putIfAbsent(player.getUniqueId(), false);
-        plugin.getCustomHashMaps().moneyAmount.putIfAbsent(player.getUniqueId(), 0);
         plugin.getCustomHashMaps().rank.putIfAbsent(player.getUniqueId(), "member");
 
         plugin.getCustomHashMaps().knockbackAmount.putIfAbsent(player.getUniqueId(), 0.1);
