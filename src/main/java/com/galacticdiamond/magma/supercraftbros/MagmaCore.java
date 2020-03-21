@@ -125,5 +125,6 @@ public class MagmaCore extends PluginBase implements Listener {
         commandMap.register("stopgame", new StopGameCommand(this));
         commandMap.register("rib", new RemoveBedrockCommand(this));
         commandMap.register("setkb", new SetKnockbackCommand(this));
+        commandMap.register("island", new WarpPlayerToIsland(this));
     }
 }

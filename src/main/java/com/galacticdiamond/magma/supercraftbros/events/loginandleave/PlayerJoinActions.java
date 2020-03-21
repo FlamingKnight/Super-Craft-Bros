@@ -7,6 +7,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
+import cn.nukkit.level.Location;
 import cn.nukkit.network.protocol.SetLocalPlayerAsInitializedPacket;
 import cn.nukkit.utils.TextFormat;
 import com.galacticdiamond.magma.supercraftbros.MagmaCore;
@@ -56,15 +57,17 @@ public class PlayerJoinActions implements Listener {
         String playerUUIDStringified = String.valueOf(player.getUniqueId());
 
         //Creates a new directory for the player
-        Path path = Paths.get("scbdata\\" + playerUUIDStringified);
+        Path path = Paths.get("worlds\\" + playerUUIDStringified);
         Files.createDirectories(path);
 
-        File sourceWorld = new File("scbdata\\SkyblockIsland");
-        File targetWorld = new File("scbdata\\" + playerUUIDStringified + "\\IslandWorld");
+        File sourceWorld = new File("worlds\\SkyblockIsland");
+        File targetWorld = new File("worlds\\" + playerUUIDStringified + "-IslandWorld");
 
         if(!targetWorld.exists()) {
             readAndWriteFunctions.copyFolders(sourceWorld, targetWorld);
         }
+
+        plugin.getServer().loadLevel(playerUUIDStringified + "-IslandWorld");
 
         //Ranks
         try {
@@ -94,7 +97,8 @@ public class PlayerJoinActions implements Listener {
         final Player player = e.getPlayer();
 
         if(e.getPacket() instanceof SetLocalPlayerAsInitializedPacket) {
-            player.teleport(loc.spawnLoc);
+            Location spawnLoc = new Location(73, 89, 140, plugin.getServer().getLevelByName("world"));
+            player.teleport(spawnLoc);
         }
     }
 
