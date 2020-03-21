@@ -16,7 +16,11 @@ import com.galacticdiamond.magma.supercraftbros.lists.CustomMessages;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class PlayerJoinActions implements Listener {
@@ -31,7 +35,7 @@ public class PlayerJoinActions implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent ev) {
+    public void onPlayerJoin(PlayerJoinEvent ev) throws IOException {
         Player player = ev.getPlayer();
         player.getInventory().clearAll();
 
@@ -39,20 +43,27 @@ public class PlayerJoinActions implements Listener {
         plugin.getCustomHashMaps().muted.putIfAbsent(player.getUniqueId(), false);
         plugin.getCustomHashMaps().moneyAmount.putIfAbsent(player.getUniqueId(), 0);
         plugin.getCustomHashMaps().rank.putIfAbsent(player.getUniqueId(), "member");
-        plugin.getCustomHashMaps().playerHome.putIfAbsent(player.getUniqueId(), loc.spawn);
+
         plugin.getCustomHashMaps().knockbackAmount.putIfAbsent(player.getUniqueId(), 0.1);
         plugin.getCustomHashMaps().playerLives.putIfAbsent(player.getUniqueId(), 3);
         plugin.getCustomHashMaps().hasDoubleJumped.putIfAbsent(player.getUniqueId(), false);
         plugin.getCustomHashMaps().hasDoubleJumped.put(player.getUniqueId(), false);
-        player.setGamemode(0);
 
+        player.setGamemode(0);
         player.setCheckMovement(false);
         player.getAdventureSettings().set(AdventureSettings.Type.ALLOW_FLIGHT, true);
         player.getAdventureSettings().update();
 
+        String playerUUIDStringified = String.valueOf(player.getUniqueId());
+
+        //Creates a new directory for the player
+        Path path = Paths.get("scbdata\\" + playerUUIDStringified);
+        Files.createDirectories(path);
+
+
+        //Ranks
         try {
-            String playerUUIDStringified = String.valueOf(player.getUniqueId());
-            String rank = readAndWriteFunctions.readFile("scbdata/" + playerUUIDStringified + ".txt");
+            String rank = readAndWriteFunctions.readFile("scbdata\\" + playerUUIDStringified + "\\ranks.txt");
             String[] rankList = new String[]{"owner", "mod", "srmod", "asteroid", "diamond", "diamondstar"};
             for(String rankName : rankList) {
                 if(rank.contains(rankName)) {
@@ -60,9 +71,8 @@ public class PlayerJoinActions implements Listener {
                 }
             }
         } catch (Exception e) {
-            String playerUUIDStringified = String.valueOf(player.getUniqueId());
-            File file = new File("scbdata/" + playerUUIDStringified + ".txt");
-            readAndWriteFunctions.writeFile(file, "Rank: member");
+            File rankFile = new File("scbdata\\" + playerUUIDStringified + "\\ranks.txt");
+            readAndWriteFunctions.writeFile(rankFile, "Rank: member");
         }
 
         if(!(player.hasPlayedBefore())) {

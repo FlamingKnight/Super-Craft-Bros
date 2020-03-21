@@ -15,7 +15,6 @@ public class ReadAndWriteFunctions {
     public void writeFile(File fileName, String toWrite) {
         try {
             FileWriter fileWriter = new FileWriter(fileName);
-            fileWriter.write(" ");
             for(int i = 0; i < toWrite.length(); i++) {
                 fileWriter.write(toWrite.charAt(i));
             }
