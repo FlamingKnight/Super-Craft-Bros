@@ -1,14 +1,9 @@
 package com.galacticdiamond.magma.supercraftbros;
 
-import cn.nukkit.Player;
-import cn.nukkit.command.Command;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.event.Listener;
-import cn.nukkit.utils.TextFormat;
-import com.galacticdiamond.magma.supercraftbros.MagmaCore;
+import com.google.common.io.Files;
 
 import java.io.*;
-import java.lang.reflect.Array;
+import java.util.Objects;
 
 public class ReadAndWriteFunctions {
 
@@ -21,6 +16,22 @@ public class ReadAndWriteFunctions {
             fileWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void copyFolders(File sourceFolder, File destinationFolder) throws IOException {
+        if(sourceFolder.isDirectory()) {
+            if(!destinationFolder.exists()) {
+                destinationFolder.mkdir();
+            }
+            for(String files : Objects.requireNonNull(sourceFolder.list())) {
+                File srcFile = new File(sourceFolder, files);
+                File destFile = new File(destinationFolder, files);
+
+                copyFolders(srcFile, destFile);
+            }
+        } else {
+            Files.copy(sourceFolder, destinationFolder);
         }
     }
 

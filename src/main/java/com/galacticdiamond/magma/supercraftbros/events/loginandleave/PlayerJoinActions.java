@@ -59,6 +59,12 @@ public class PlayerJoinActions implements Listener {
         Path path = Paths.get("scbdata\\" + playerUUIDStringified);
         Files.createDirectories(path);
 
+        File sourceWorld = new File("scbdata\\SkyblockIsland");
+        File targetWorld = new File("scbdata\\" + playerUUIDStringified + "\\IslandWorld");
+
+        if(!targetWorld.exists()) {
+            readAndWriteFunctions.copyFolders(sourceWorld, targetWorld);
+        }
 
         //Ranks
         try {
