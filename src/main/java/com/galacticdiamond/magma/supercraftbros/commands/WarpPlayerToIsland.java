@@ -26,7 +26,6 @@ public class WarpPlayerToIsland extends Command {
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
-            player.getInventory().clearAll();
             plugin.getCustomHashMaps().islandInventory.putIfAbsent(player.getUniqueId(), player.getInventory());
             Inventory playersInventory = plugin.getCustomHashMaps().islandInventory.get(player.getUniqueId());
             player.getInventory().setContents(playersInventory.getContents());

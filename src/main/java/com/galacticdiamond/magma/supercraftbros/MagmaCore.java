@@ -23,8 +23,6 @@ import com.galacticdiamond.magma.supercraftbros.events.motion.*;
 import com.galacticdiamond.magma.supercraftbros.lists.*;
 import com.galacticdiamond.magma.supercraftbros.tasks.*;
 
-import java.io.File;
-
 public class MagmaCore extends PluginBase implements Listener {
 
     public static MagmaCore plugin;
@@ -93,8 +91,12 @@ public class MagmaCore extends PluginBase implements Listener {
 
     private void registerEvents() {
         PluginManager pluginManager = getServer().getPluginManager();
+        pluginManager.registerEvents(new FilesAndDirsRegistration(this), this);
+        pluginManager.registerEvents(new CheckMovement(this), this);
+        pluginManager.registerEvents(new JoinMessagesEvent(this), this);
+        pluginManager.registerEvents(new PlayerQuitEvent(this), this);
+        pluginManager.registerEvents(new TeleportOnJoin(this), this);
         pluginManager.registerEvents(new DoubleJumpActions(this), this);
-        pluginManager.registerEvents(new PlayerJoinActions(this), this);
         pluginManager.registerEvents(new PlayerDeathActions(this), this);
         pluginManager.registerEvents(new PlayerMoveActions(this), this);
         pluginManager.registerEvents(new OpCanBreak(this), this);
