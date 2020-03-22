@@ -44,7 +44,6 @@ public class MagmaCore extends PluginBase implements Listener {
     //TODO PARTLY DONE: DOUBLE JUMP
     //TODO: MAKE EVENT HANDLERS IN THEIR OWN PARTS
     //TODO: CUSTOM NAME TAGS
-    //TODO: FINISH WARP
     //TODO: MORE COMMANDS SUCH AS VANISH
     //TODO: FIIIIIIIXXXXXXXXXX READING AND WRITING JACKSON
     //TODO: DELETE/REPLACE CURRENT NUKKIT DEFAULT COMMANDS
@@ -112,6 +111,7 @@ public class MagmaCore extends PluginBase implements Listener {
         CommandMap commandMap = getServer().getCommandMap();
         SimpleCommandMap simpleCommandMap = new SimpleCommandMap(this.getServer());
         simpleCommandMap.clearCommands();
+        commandMap.register("warp", new WarpCommand(this));
         commandMap.register("test", new TestCommand(this));
         commandMap.register("clear", new ClearCommand(this));
         commandMap.register("push", new PushCommand(this));
