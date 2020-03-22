@@ -41,7 +41,7 @@ public class MagmaCore extends PluginBase implements Listener {
 
     //TODO PARTLY DONE: FIX INVentory ISLANDS CLEARED ON JOIN
 
-    //TODO: DOUBLE JUMP
+    //TODO PARTLY DONE: DOUBLE JUMP
     //TODO: MAKE EVENT HANDLERS IN THEIR OWN PARTS
     //TODO: CUSTOM NAME TAGS
     //TODO: FINISH WARP
