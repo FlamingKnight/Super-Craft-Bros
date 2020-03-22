@@ -3,6 +3,7 @@ package com.galacticdiamond.magma.supercraftbros.commands;
 import cn.nukkit.Player;
 import cn.nukkit.command.Command;
 import cn.nukkit.command.CommandSender;
+import cn.nukkit.inventory.Inventory;
 import cn.nukkit.level.Level;
 import cn.nukkit.level.Location;
 import cn.nukkit.math.Vector3;
@@ -25,6 +26,10 @@ public class WarpPlayerToIsland extends Command {
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
+            player.getInventory().clearAll();
+            plugin.getCustomHashMaps().islandInventory.putIfAbsent(player.getUniqueId(), player.getInventory());
+            Inventory playersInventory = plugin.getCustomHashMaps().islandInventory.get(player.getUniqueId());
+            player.getInventory().setContents(playersInventory.getContents());
             String playerUUIDStringified = String.valueOf(player.getUniqueId());
             plugin.getServer().loadLevel(playerUUIDStringified + "-IslandWorld");
             Level playerIsland = plugin.getServer().getLevelByName(playerUUIDStringified + "-IslandWorld");

@@ -25,6 +25,15 @@ public class SpawnCommand extends Command implements Listener {
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         if(sender instanceof Player) {
             Player player = (Player) sender;
+
+            String playerUUIDStringified = String.valueOf(player.getUniqueId());
+            if(player.getLevel().equals(plugin.getServer().getLevelByName(playerUUIDStringified + "-IslandWorld"))) {
+                plugin.getCustomHashMaps().islandInventory.putIfAbsent(player.getUniqueId(), player.getInventory());
+                plugin.getCustomHashMaps().islandInventory.put(player.getUniqueId(), player.getInventory());
+            }
+
+            player.getInventory().clearAll();
+
             Location spawnLoc = new Location(73, 89, 140, plugin.getServer().getLevelByName("world"));
             player.teleport(spawnLoc);
             return true;

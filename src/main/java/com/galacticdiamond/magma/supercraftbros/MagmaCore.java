@@ -39,6 +39,7 @@ public class MagmaCore extends PluginBase implements Listener {
     private int day = hour * 24;
 
 
+    //TODO PARTLY DONE: FIX INVentory ISLANDS CLEARED ON JOIN
 
     //TODO: DOUBLE JUMP
     //TODO: MAKE EVENT HANDLERS IN THEIR OWN PARTS

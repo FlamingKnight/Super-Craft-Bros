@@ -1,6 +1,7 @@
 package com.galacticdiamond.magma.supercraftbros.lists;
 
 import cn.nukkit.event.Listener;
+import cn.nukkit.inventory.Inventory;
 import cn.nukkit.math.Vector3f;
 
 import java.util.HashMap;
@@ -20,4 +21,6 @@ public class CustomHashMaps implements Listener {
 
     public HashMap<UUID, String> banReason = new HashMap<UUID, String>();
     public HashMap<UUID, String> muteReason = new HashMap<UUID, String>();
+
+    public HashMap<UUID, Inventory> islandInventory = new HashMap<UUID, Inventory>();
 }

@@ -7,6 +7,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.player.PlayerJoinEvent;
 import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
+import cn.nukkit.inventory.Inventory;
 import cn.nukkit.level.Location;
 import cn.nukkit.network.protocol.SetLocalPlayerAsInitializedPacket;
 import cn.nukkit.utils.TextFormat;
@@ -105,6 +106,10 @@ public class PlayerJoinActions implements Listener {
     @EventHandler
     public void PlayerQuitEvent(PlayerQuitEvent ev){
         Player player = ev.getPlayer();
+        String playerUUIDStringified = String.valueOf(player.getUniqueId());
+        if(player.getLevel().equals(plugin.getServer().getLevelByName(playerUUIDStringified + "-IslandWorld"))) {
+            plugin.getCustomHashMaps().islandInventory.put(player.getUniqueId(), player.getInventory());
+        }
         ev.setQuitMessage(cm.prefix + TextFormat.RED + "Goodbye " + player.getName() + "!");
     }
 
