@@ -111,8 +111,6 @@ public class MagmaCore extends PluginBase implements Listener {
 
     private void registerCommands() {
         CommandMap commandMap = getServer().getCommandMap();
-        SimpleCommandMap simpleCommandMap = new SimpleCommandMap(this.getServer());
-        simpleCommandMap.clearCommands();
         commandMap.register("warp", new WarpCommand(this));
         commandMap.register("test", new TestCommand(this));
         commandMap.register("clear", new ClearCommand(this));

@@ -21,8 +21,13 @@ public class OpCanBreak implements Listener {
     public void onPlace(BlockBreakEvent ev) {
         Block block = ev.getBlock();
         Player player = ev.getPlayer();
-        if(!player.isOp()) {
+        if(!player.isOp() && player.getLevel().equals(plugin.getServer().getLevelByName("world"))) {
             ev.setCancelled();
+        } else {
+            String playerUUIDStringified = String.valueOf(player.getUniqueId());
+            if(!player.getLevel().getName().equalsIgnoreCase(playerUUIDStringified + "-IslandWorld") && !player.isOp()) {
+                ev.setCancelled();
+            }
         }
     }
 }
