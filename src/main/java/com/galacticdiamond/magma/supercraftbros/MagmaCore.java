@@ -107,6 +107,8 @@ public class MagmaCore extends PluginBase implements Listener {
         pluginManager.registerEvents(new DiamondBlockFeeder(this), this);
         pluginManager.registerEvents(new EmeraldBlockHealing(this), this);
         pluginManager.registerEvents(new HeavenlyAxeGiver(this), this);
+
+        pluginManager.registerEvents(new OreGenerator(this), this);
     }
 
     private void registerCommands() {
